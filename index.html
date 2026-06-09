@@ -1284,7 +1284,7 @@
                     ║  5. The form submits via hidden iframe for seamless UX  ║
                     ╚══════════════════════════════════════════════════════════════╝
                     -->
-                    <form id="googleFormContact" method="POST"
+                    <form style="display:none;" id="googleFormContact" method="POST"
                     action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfch5a00dYWtkDtzUnzRycJUXnpLj2MBrvMaL875enS4F58RQ/formResponse"
                     target="hiddenGoogleFrame"
                     onsubmit="handleFormSubmit(event)">
@@ -1332,6 +1332,13 @@
                 </form>
                 <!-- Hidden iframe for Google Form submission -->
                 <iframe name="hiddenGoogleFrame" id="hiddenGoogleFrame" style="display:none;width:0;height:0;border:none;" title="Hidden submission frame"></iframe>
+				
+				<iframe
+  src="https://docs.google.com/forms/d/e/1FAIpQLSfch5a00dYWtkDtzUnzRycJUXnpLj2MBrvMaL875enS4F58RQ/viewform"
+  width="100%"
+  height="800"
+  frameborder="0">
+</iframe>
             </div>
         </div>
     </div>
