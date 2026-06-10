@@ -837,6 +837,137 @@
             }
         }
     </style>
+    <style>
+    /* Enhanced Modal Styles */
+    #detailsModal .modal-content {
+        border-radius: 28px;
+        border: none;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    }
+    #detailsModal .modal-header {
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        color: #fff;
+        border-bottom: none;
+        padding: 20px 30px;
+        border-radius: 28px 28px 0 0;
+    }
+    #detailsModal .modal-title {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    #detailsModal .btn-close {
+        filter: brightness(0) invert(1);
+        opacity: 0.9;
+        transition: all 0.3s;
+    }
+    #detailsModal .btn-close:hover {
+        opacity: 1;
+        transform: rotate(90deg);
+    }
+    #detailsModal .modal-body {
+        padding: 0 24px 24px;
+    }
+    /* Accordion overrides */
+    .accordion-software .accordion-button {
+        font-weight: 700;
+        font-size: 1.05rem;
+        background: #f8fafc;
+        color: #1e293b;
+        border-radius: 12px !important;
+        padding: 16px 20px;
+        transition: all 0.3s;
+    }
+    .accordion-software .accordion-button:not(.collapsed) {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: #fff;
+        box-shadow: 0 6px 20px rgba(79,70,229,0.3);
+    }
+    .accordion-software .accordion-button::after {
+        background-size: 1.2rem;
+        transition: transform 0.3s;
+    }
+    .accordion-software .accordion-item {
+        border: 1px solid rgba(0,0,0,0.06);
+        margin-bottom: 12px;
+        border-radius: 16px !important;
+        overflow: hidden;
+    }
+    .accordion-software .accordion-body {
+        padding: 20px 22px;
+        background: #fff;
+        font-size: 0.95rem;
+    }
+    .list-submodule {
+        list-style: none;
+        padding-left: 0;
+    }
+    .list-submodule li {
+        padding: 12px 16px;
+        background: #f1f5f9;
+        border-radius: 12px;
+        margin-bottom: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .badge-benefit {
+        background: #10b98120;
+        color: #059669;
+        font-weight: 600;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+    }
+    .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        margin: 16px 0;
+    }
+    .overview-card {
+        background: #f8fafc;
+        border-radius: 14px;
+        padding: 16px;
+        border-left: 4px solid #4f46e5;
+    }
+    .contact-mini-card {
+        background: #f1f5f9;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 14px;
+    }
+    .module-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: #4f46e5;
+        color: #fff;
+        border-radius: 50%;
+        font-weight: 700;
+        margin-right: 8px;
+    }
+    @media (max-width: 576px) {
+        .accordion-software .accordion-button {
+            font-size: 0.95rem;
+            padding: 14px 16px;
+        }
+        .overview-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
 </head>
 <body>
 
@@ -851,7 +982,7 @@
     <!-- ========== NAVBAR ========== -->
     <nav class="navbar navbar-expand-lg" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand" href="http://FreeLearning365.com" target="_blank">
+            <a class="navbar-brand" href="#" target="_blank">
                 <span class="brand-icon">⚡</span>
                 <span>FreeLearning365</span>
             </a>
@@ -948,14 +1079,14 @@
     <!-- ========== SOFTWARE / ERP SECTION ========== -->
     <section class="section-padding" id="software">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header" data-aos="fade-up" data-aos-delay="50">
                 <span class="section-tag tag-software">💼 Available Software & Web ERP</span>
                 <h2>Powerful ERP Solutions for Every Business</h2>
                 <p>Comprehensive, scalable, and ready-to-demo enterprise resource planning systems tailored to your industry needs.</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="50">
-                    <a href="#manufacturing-erp" class="card-item accent-indigo" title="Manufacturing ERP - Click for details">
+                    <a data-bs-toggle="modal" data-bs-target="#contactModal" onclick="showDetailsModal('software','manufacturing-erp')" href="#" class="card-item accent-indigo" title="Manufacturing ERP - Click for details">
                         <span class="card-emoji">🏭</span>
                         <div class="card-icon-wrap icon-indigo"><i class="fas fa-industry"></i></div>
                         <h4>Manufacturing ERP</h4>
@@ -964,7 +1095,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="#sales-inventory-accounting-erp" class="card-item accent-teal" title="Sales, Inventory & Accounting ERP - Click for details">
+                    <a onclick="showDetailsModal('software','sales-inventory-accounting-erp')" href="javascript:void(0)" class="card-item accent-teal" title="Sales, Inventory & Accounting ERP - Click for details">
                         <span class="card-emoji">💰</span>
                         <div class="card-icon-wrap icon-teal"><i class="fas fa-chart-line"></i></div>
                         <h4>Sales, Inventory & Accounting ERP</h4>
@@ -973,7 +1104,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
-                    <a href="#distributor-management-system" class="card-item accent-amber" title="Distributor Management System - Click for details">
+                    <a onclick="showDetailsModal('software','distributor-management-system')" href="javascript:void(0)"  class="card-item accent-amber" title="Distributor Management System - Click for details">
                         <span class="card-emoji">🚚</span>
                         <div class="card-icon-wrap icon-amber"><i class="fas fa-truck-fast"></i></div>
                         <h4>Distributor Management System</h4>
@@ -982,7 +1113,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <a href="#ideal-hr-solutions" class="card-item accent-green" title="Ideal HR Solutions - Click for details">
+                    <a onclick="showDetailsModal('software','ideal-hr-solutions')" href="javascript:void(0)" class="card-item accent-green" title="Ideal HR Solutions - Click for details">
                         <span class="card-emoji">👥</span>
                         <div class="card-icon-wrap icon-green"><i class="fas fa-users-gear"></i></div>
                         <h4>Ideal HR Solutions</h4>
@@ -991,7 +1122,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
-                    <a href="#customer-service-warranty-management" class="card-item accent-pink" title="Customer Service & Warranty Management ERP - Click for details">
+                    <a onclick="showDetailsModal('software','customer-service-warranty-management')" href="javascript:void(0)" class="card-item accent-pink" title="Customer Service & Warranty Management ERP - Click for details">
                         <span class="card-emoji">🛡️</span>
                         <div class="card-icon-wrap icon-pink"><i class="fas fa-headset"></i></div>
                         <h4>Customer Service & Warranty Management ERP</h4>
@@ -1000,7 +1131,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <a href="#reporting-portal" class="card-item accent-purple" title="Reporting Portal - Click for details">
+                    <a onclick="showDetailsModal('software','reporting-portal')" href="javascript:void(0)" class="card-item accent-purple" title="Reporting Portal - Click for details">
                         <span class="card-emoji">📊</span>
                         <div class="card-icon-wrap icon-purple"><i class="fas fa-chart-pie"></i></div>
                         <h4>Reporting Portal</h4>
@@ -1022,7 +1153,7 @@
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-5 col-md-8" data-aos="zoom-in" data-aos-delay="100">
-                    <a href="#attendance-tracking" class="card-item accent-teal" title="Attendance Tracking App - Click for details">
+                    <a onclick="showDetailsModal('software','attendance-tracking')" href="javascript:void(0)" class="card-item accent-teal" title="Attendance Tracking App - Click for details">
                         <span class="card-emoji">📱</span>
                         <div class="card-icon-wrap icon-teal"><i class="fas fa-mobile-alt"></i></div>
                         <h4>Attendance Tracking</h4>
@@ -1044,7 +1175,7 @@
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-5 col-md-6" data-aos="fade-right" data-aos-delay="100">
-                    <a href="#powerbi-integration" class="card-item accent-amber" title="PowerBI Integration with ERP - Click for details">
+                    <a onclick="showDetailsModal('tools','powerbi-integration')" href="javascript:void(0)" class="card-item accent-amber" title="PowerBI Integration with ERP - Click for details">
                         <span class="card-emoji">⚡</span>
                         <div class="card-icon-wrap icon-amber"><i class="fas fa-bolt"></i></div>
                         <h4>PowerBI Integration with ERP</h4>
@@ -1053,7 +1184,7 @@
                     </a>
                 </div>
                 <div class="col-lg-5 col-md-6" data-aos="fade-left" data-aos-delay="150">
-                    <a href="#data-analytics" class="card-item accent-blue" title="Data Analytics - Click for details">
+                    <a onclick="showDetailsModal('tools','data-analytics')" href="javascript:void(0)" class="card-item accent-blue" title="Data Analytics - Click for details">
                         <span class="card-emoji">📈</span>
                         <div class="card-icon-wrap icon-teal"><i class="fas fa-chart-bar"></i></div>
                         <h4>Data Analytics</h4>
@@ -1075,7 +1206,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="50">
-                    <a href="#data-warehousing" class="card-item accent-indigo" title="Data Warehousing - Click for details">
+                    <a onclick="showDetailsModal('services','data-warehousing')" href="javascript:void(0)" class="card-item accent-indigo" title="Data Warehousing - Click for details">
                         <span class="card-emoji">🗄️</span>
                         <div class="card-icon-wrap icon-indigo"><i class="fas fa-database"></i></div>
                         <h4>Data Warehousing</h4>
@@ -1084,7 +1215,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="#etl-development" class="card-item accent-teal" title="ETL Development - Click for details">
+                    <a onclick="showDetailsModal('services','etl-development')" href="javascript:void(0)" class="card-item accent-teal" title="ETL Development - Click for details">
                         <span class="card-emoji">🔄</span>
                         <div class="card-icon-wrap icon-teal"><i class="fas fa-exchange-alt"></i></div>
                         <h4>ETL Development</h4>
@@ -1093,7 +1224,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
-                    <a href="#custom-software-erp-development" class="card-item accent-amber" title="Custom Software / ERP Development - Click for details">
+                    <a onclick="showDetailsModal('services','custom-software-erp-development')" href="javascript:void(0)" class="card-item accent-amber" title="Custom Software / ERP Development - Click for details">
                         <span class="card-emoji">💻</span>
                         <div class="card-icon-wrap icon-amber"><i class="fas fa-code"></i></div>
                         <h4>Custom Software / ERP Development</h4>
@@ -1102,7 +1233,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <a href="#ai-integration" class="card-item accent-pink" title="AI Integration - Click for details">
+                    <a onclick="showDetailsModal('services','ai-integration')" href="javascript:void(0)" class="card-item accent-pink" title="AI Integration - Click for details">
                         <span class="card-emoji">🤖</span>
                         <div class="card-icon-wrap icon-pink"><i class="fas fa-robot"></i></div>
                         <h4>AI Integration</h4>
@@ -1111,7 +1242,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
-                    <a href="#database-integration-migration" class="card-item accent-green" title="Database Integration & Migration - Click for details">
+                    <a onclick="showDetailsModal('services','database-integration-migration')" href="javascript:void(0)" class="card-item accent-green" title="Database Integration & Migration - Click for details">
                         <span class="card-emoji">🔗</span>
                         <div class="card-icon-wrap icon-green"><i class="fas fa-link"></i></div>
                         <h4>Database Integration & Migration</h4>
@@ -1120,7 +1251,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <a href="#api-development" class="card-item accent-purple" title="API Development - Click for details">
+                    <a onclick="showDetailsModal('services','api-development')" href="javascript:void(0)" class="card-item accent-purple" title="API Development - Click for details">
                         <span class="card-emoji">🔌</span>
                         <div class="card-icon-wrap icon-purple"><i class="fas fa-plug"></i></div>
                         <h4>API Development</h4>
@@ -1142,7 +1273,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="50">
-                    <a href="#powerbi-training" class="card-item accent-amber" title="PowerBI Training - Click for details">
+                    <a onclick="showDetailsModal('training','powerbi-training')" href="javascript:void(0)" class="card-item accent-amber" title="PowerBI Training - Click for details">
                         <span class="card-emoji">📊</span>
                         <div class="card-icon-wrap icon-amber"><i class="fas fa-chart-simple"></i></div>
                         <h4>PowerBI</h4>
@@ -1151,7 +1282,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="120">
-                    <a href="#sql-server-training" class="card-item accent-teal" title="SQL Server Training - Click for details">
+                    <a onclick="showDetailsModal('training','sql-server-training')" href="javascript:void(0)" class="card-item accent-teal" title="SQL Server Training - Click for details">
                         <span class="card-emoji">🗃️</span>
                         <div class="card-icon-wrap icon-teal"><i class="fas fa-server"></i></div>
                         <h4>SQL Server</h4>
@@ -1160,7 +1291,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="180">
-                    <a href="#csharp-training" class="card-item accent-indigo" title="C# Training - Click for details">
+                    <a onclick="showDetailsModal('training','csharp-training')" href="javascript:void(0)" class="card-item accent-indigo" title="C# Training - Click for details">
                         <span class="card-emoji">💻</span>
                         <div class="card-icon-wrap icon-indigo"><i class="fas fa-hashtag"></i></div>
                         <h4>C# Programming</h4>
@@ -1169,7 +1300,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="240">
-                    <a href="#python-data-analysis-training" class="card-item accent-pink" title="Python Data Analysis Training - Click for details">
+                    <a onclick="showDetailsModal('training','python-data-analysis-training')" href="javascript:void(0)" class="card-item accent-pink" title="Python Data Analysis Training - Click for details">
                         <span class="card-emoji">🐍</span>
                         <div class="card-icon-wrap icon-pink"><i class="fab fa-python"></i></div>
                         <h4>Python Data Analysis</h4>
@@ -1342,8 +1473,24 @@
             </div>
         </div>
     </div>
-</div>
 
+    
+
+
+
+</div>
+<!-- ========== DYNAMIC DETAILS MODAL ========== -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="detailsModalBody"></div>
+        </div>
+    </div>
+</div>
 <!-- ========== SCRIPTS ========== -->
 <!-- Bootstrap 5.3 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
@@ -1357,9 +1504,406 @@
 <!-- SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
 </script>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    // ========== JSON DATA OBJECTS ==========
+    const softwareData = [
+        {
+            id: "manufacturing-erp",
+            title: "🏭 Manufacturing ERP",
+            overview: {
+                description: "Complete production lifecycle management designed for discrete & process manufacturing. Real‑time shop floor control, BOM management, and quality assurance integrated into one intelligent platform.",
+                whyChoose: [
+                    "End-to-end visibility from raw material to finished goods",
+                    "AI‑driven demand forecasting reduces stock‑outs by 35%",
+                    "Seamless integration with IoT devices and PLCs",
+                    "Compliant with ISO 9001 & industry 4.0 standards"
+                ],
+                technology: [".NET Core, SQL Server, Azure IoT Hub, React", "REST APIs for ERP integration"],
+                supportedBusiness: ["Automotive", "Pharma", "Electronics", "FMCG", "Textile"],
+                roi: "Typical payback in 8–12 months through waste reduction & OEE improvement.",
+                businessBenefits: [
+                    "Reduce production downtime by 20%",
+                    "Improve on‑time delivery to 98%",
+                    "Lower inventory carrying cost by 25%"
+                ],
+                implementationTimeline: "12–16 weeks (phased rollout available)",
+                contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316", location: "Dhanmondi, Dhaka" }
+            },
+            modules: [
+                {
+                    name: "Production Planning & Scheduling",
+                    description: "Advanced planning with finite capacity scheduling and what‑if analysis.",
+                    subModules: [
+                        { task: "Master Production Schedule (MPS)", benefit: "Align production with sales forecasts" },
+                        { task: "Material Requirement Planning (MRP)", benefit: "Automated purchase suggestions reduce stockouts" },
+                        { task: "Capacity Planning Dashboard", benefit: "Visual bottleneck identification" }
+                    ]
+                },
+                {
+                    name: "Inventory & Warehouse Management",
+                    description: "Multi‑location inventory with barcode/RFID and real‑time stock updates.",
+                    subModules: [
+                        { task: "Goods Receipt & Issue", benefit: "Paperless, error‑free transactions" },
+                        { task: "Cycle Counting & Reconciliation", benefit: "Inventory accuracy >99%" },
+                        { task: "FIFO/FEFO Batch Tracking", benefit: "Minimize expiry losses" }
+                    ]
+                },
+                {
+                    name: "Quality Control & Assurance",
+                    description: "Integrated QC checkpoints with SPC and non‑conformance tracking.",
+                    subModules: [
+                        { task: "Incoming Inspection", benefit: "Reduce supplier defects by 40%" },
+                        { task: "In‑Process Inspection", benefit: "Real‑time defect alerts" },
+                        { task: "CAPA Management", benefit: "Closed‑loop corrective actions" }
+                    ]
+                },
+                {
+                    name: "Shop Floor Execution",
+                    description: "Digital work instructions, machine integration, and labor tracking.",
+                    subModules: [
+                        { task: "Operator Dashboard", benefit: "Live OEE & job status" },
+                        { task: "Machine Downtime Tracking", benefit: "Identify top downtime reasons" }
+                    ]
+                }
+            ],
+            conclusion: "🚀 Our Manufacturing ERP is your partner for Industry 4.0 transformation. Schedule a demo to see it in action!"
+        },
+        {
+            id: "sales-inventory-accounting-erp",
+            title: "💰 Sales, Inventory & Accounting ERP",
+            overview: {
+                description: "Unified order‑to‑cash platform that connects sales, warehouse, and finance in real time. Automate invoicing, track inventory across multiple channels, and gain financial clarity.",
+                whyChoose: [
+                    "Single source of truth for sales, stock, and ledger",
+                    "Real‑time profitability analysis by product/customer",
+                    "Automated tax compliance (VAT/GST ready)"
+                ],
+                technology: ["ASP.NET Core, Angular, SQL Server", "PowerBI embedded analytics"],
+                supportedBusiness: ["Wholesale", "Retail", "E‑commerce", "Distribution"],
+                roi: "Achieve 30% faster month‑end close and 15% reduction in inventory holding costs.",
+                businessBenefits: ["360° customer view", "Reduce billing errors by 90%", "Multi‑currency & multi‑company support"],
+                implementationTimeline: "8–10 weeks",
+                contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+            },
+            modules: [
+                { name: "Sales Order Management", description: "Quote‑to‑cash workflow with approval hierarchy.", subModules: [{ task: "Quotation & Order Entry", benefit: "Faster quote turnaround" }, { task: "Order Fulfillment Tracking", benefit: "Real‑time delivery updates" }] },
+                { name: "Inventory Control", description: "Multi‑warehouse stock with bin management.", subModules: [{ task: "Stock Transfer & Adjustment", benefit: "Eliminate manual spreadsheets" }, { task: "Reorder Alerts", benefit: "Never run out of fast‑movers" }] },
+                { name: "Accounting & Finance", description: "General ledger, AP/AR, and bank reconciliation.", subModules: [{ task: "Automated Invoicing", benefit: "Reduce DSO by 20%" }, { task: "Financial Reports", benefit: "P&L, Balance Sheet in one click" }] }
+            ],
+            conclusion: "📊 Transform your financial operations with real‑time insights. Request a demo today!"
+        },
+        {
+            id: "distributor-management-system",
+            title: "🚚 Distributor Management System",
+            overview: {
+                description: "Empower your distribution network with a portal for order placement, inventory visibility, and claims management. Optimize secondary sales and reduce stock‑outs at distributor level.",
+                whyChoose: ["Real‑time distributor stock & sales", "Automated order replenishment", "Loyalty & incentive management"],
+                technology: ["React, .NET Core, PostgreSQL", "Mobile‑first distributor app"],
+                supportedBusiness: ["FMCG", "Pharma", "Consumer Electronics"],
+                roi: "Increase distributor fill rates by 25% and reduce lost sales.",
+                businessBenefits: ["Streamlined order processing", "Visibility into secondary sales", "Reduce manual follow‑up"],
+                implementationTimeline: "6–8 weeks",
+                contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+            },
+            modules: [
+                { name: "Distributor Portal", description: "Self‑service dashboard for orders & claims.", subModules: [{ task: "Order Placement", benefit: "24/7 ordering" }, { task: "Claim Submission", benefit: "Faster resolution" }] },
+                { name: "Inventory & Sales Tracking", description: "Monitor distributor stock & secondary sales.", subModules: [{ task: "Stock on Hand", benefit: "Avoid over‑stocking" }, { task: "Sales Out Report", benefit: "Track market demand" }] }
+            ],
+            conclusion: "🔗 Strengthen your distribution chain with data‑driven decisions."
+        },
+        {
+            id: "ideal-hr-solutions",
+            title: "👥 Ideal HR Solutions",
+            overview: {
+                description: "Comprehensive HRMS covering the entire employee lifecycle – from recruitment to retirement. Includes payroll, attendance, performance, and a mobile self‑service app.",
+                whyChoose: ["AI‑powered resume screening", "Biometric & mobile attendance", "Customizable approval workflows"],
+                technology: ["React, Node.js, MongoDB", "PowerBI HR analytics"],
+                supportedBusiness: ["All industries"],
+                roi: "Reduce HR admin time by 50% and improve payroll accuracy.",
+                businessBenefits: ["Employee self‑service portal", "Automated compliance reports", "Real‑time headcount analytics"],
+                implementationTimeline: "6–10 weeks",
+                contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+            },
+            modules: [
+                { name: "Recruitment & Onboarding", subModules: [{ task: "Job Posting & Applicant Tracking", benefit: "Faster hiring" }] },
+                { name: "Time & Attendance", subModules: [{ task: "Shift Management", benefit: "Reduce absenteeism" }] },
+                { name: "Payroll & Benefits", subModules: [{ task: "Salary Processing", benefit: "Error‑free payroll" }] }
+            ],
+            conclusion: "👔 Build a happier workforce with our HR solution."
+        },
+        {
+            id: "customer-service-warranty-management",
+            title: "🛡️ Customer Service & Warranty ERP",
+            overview: {
+                description: "Manage service requests, warranty claims, and field service operations with a unified ticketing system. Boost customer satisfaction and track SLAs.",
+                whyChoose: ["360° customer service view", "Automated warranty validation", "Field service mobile app"],
+                technology: [".NET Core, Angular, SQL Server"],
+                supportedBusiness: ["Electronics", "Appliances", "Industrial Equipment"],
+                roi: "Reduce service turnaround time by 30%.",
+                businessBenefits: ["Improved first‑time fix rate", "Warranty cost reduction", "Customer portal"],
+                implementationTimeline: "8–10 weeks",
+                contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+            },
+            modules: [
+                { name: "Service Ticketing", subModules: [{ task: "Case Management", benefit: "Faster resolution" }] },
+                { name: "Warranty Management", subModules: [{ task: "Warranty Claim Processing", benefit: "Reduce fraud" }] }
+            ],
+            conclusion: "🤝 Delight your customers with proactive service."
+        },
+        {
+            id: "reporting-portal",
+            title: "📊 Reporting Portal",
+            overview: {
+                description: "Self‑service BI portal with drag‑and‑drop report builder, scheduled exports, and interactive dashboards. Connect to any ERP/database for unified analytics.",
+                whyChoose: ["No‑code report designer", "Real‑time data refresh", "Row‑level security"],
+                technology: ["PowerBI Embedded, React", "Azure SQL / PostgreSQL"],
+                supportedBusiness: ["All industries"],
+                roi: "Save 20+ hours/month on manual reporting.",
+                businessBenefits: ["Empower business users", "Consistent data governance"],
+                implementationTimeline: "4–6 weeks",
+                contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+            },
+            modules: [
+                { name: "Report Builder", subModules: [{ task: "Drag‑and‑Drop Designer", benefit: "Create reports in minutes" }] },
+                { name: "Dashboard Gallery", subModules: [{ task: "KPI Widgets", benefit: "At‑a‑glance insights" }] }
+            ],
+            conclusion: "📈 Turn data into decisions with our intuitive portal."
+        },
+        {
+            id: "attendance-tracking",
+            title: "📱 Attendance Tracking",
+            overview: {
+                description: "GPS‑enabled mobile attendance with facial recognition, geofencing, and real‑time sync. Perfect for field staff, remote teams, and multi‑location workforce.",
+                whyChoose: ["Facial recognition & liveness detection", "Geofenced auto check‑in/out", "Offline support"],
+                technology: ["Flutter, Firebase, AWS Rekognition"],
+                supportedBusiness: ["Field Services", "Security", "Retail", "Construction"],
+                roi: "Eliminate buddy punching, save 5% payroll leakage.",
+                businessBenefits: ["Real‑time attendance dashboards", "Seamless HRMS integration"],
+                implementationTimeline: "2–4 weeks",
+                contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+            },
+            modules: [
+                { name: "Mobile App", subModules: [{ task: "Check‑in/Out", benefit: "One‑tap attendance" }, { task: "Leave Requests", benefit: "Paperless workflow" }] },
+                { name: "Admin Console", subModules: [{ task: "Attendance Reports", benefit: "Export & analyze" }] }
+            ],
+            conclusion: "📍 Know where your team is, anytime."
+        }
+    ];
+
+    const businessToolsData = [
+        {
+            id: "powerbi-integration",
+            title: "⚡ PowerBI Integration with ERP",
+            description: "Seamless connector that syncs your ERP data (sales, inventory, finance) to PowerBI for real‑time dashboards. No manual exports or coding.",
+            benefits: ["Automated data refresh", "Pre‑built KPI templates", "Row‑level security"],
+            contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+        },
+        {
+            id: "data-analytics",
+            title: "📈 Data Analytics",
+            description: "Advanced analytics services including predictive modeling, customer segmentation, and churn analysis. Drive decisions with machine learning.",
+            benefits: ["Custom ML models", "Interactive visualizations", "Actionable insights"],
+            contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" }
+        }
+    ];
+
+    const servicesData = [
+        { id: "data-warehousing", title: "🗄️ Data Warehousing", description: "Design and implementation of on‑prem & cloud data warehouses (Azure Synapse, Snowflake). High‑performance ETL/ELT pipelines.", benefits: ["Scalable architecture", "Cost optimization", "Real‑time analytics"] },
+        { id: "etl-development", title: "🔄 ETL Development", description: "Robust ETL pipelines using Azure Data Factory, SSIS, and Python. Cleanse, transform, and load data from any source.", benefits: ["Incremental loading", "Error handling", "Monitoring dashboards"] },
+        { id: "custom-software-erp-development", title: "💻 Custom Software / ERP Development", description: "Bespoke applications tailored to your unique business processes. Modern tech stacks and agile delivery.", benefits: ["Full ownership", "Scalable architecture", "Integration ready"] },
+        { id: "ai-integration", title: "🤖 AI Integration", description: "Embed machine learning, NLP, and computer vision into your existing applications. Chatbots, document AI, predictive maintenance.", benefits: ["Pre‑trained models", "API‑first design", "ROI‑focused"] },
+        { id: "database-integration-migration", title: "🔗 Database Integration & Migration", description: "Zero‑downtime migration between SQL Server, PostgreSQL, MySQL, and cloud databases.", benefits: ["Data integrity checks", "Minimal business disruption"] },
+        { id: "api-development", title: "🔌 API Development", description: "Design and build secure RESTful & GraphQL APIs. Comprehensive documentation and versioning.", benefits: ["OAuth2/JWT security", "Rate limiting", "Developer portal"] }
+    ];
+
+    const trainingData = [
+        { id: "powerbi-training", title: "📊 PowerBI Training", description: "Beginner to Advanced. Learn DAX, data modeling, dashboard design, and enterprise deployment. Hands‑on projects.", duration: "24 hours (flexible schedule)", contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" } },
+        { id: "sql-server-training", title: "🗃️ SQL Server Training", description: "DBA & Developer tracks. Query optimization, administration, backups, high availability, and performance tuning.", duration: "30 hours", contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" } },
+        { id: "csharp-training", title: "💻 C# Programming", description: "Master .NET framework, OOP, LINQ, Entity Framework, and build robust applications with real‑world examples.", duration: "40 hours", contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" } },
+        { id: "python-data-analysis-training", title: "🐍 Python Data Analysis", description: "Pandas, NumPy, Matplotlib, Seaborn, and Scikit‑learn for data science workflows. Real datasets, real insights.", duration: "28 hours", contact: { email: "freelearning365.com@gmail.com", phone: "+880 1711-065316" } }
+    ];
+
+    // ========== MODAL BUILDING FUNCTIONS ==========
+    function buildSoftwareModal(project) {
+        
+        const accordionId = `accordionSoftware_${project.id}`;
+        let html = `<div class="accordion accordion-software" id="${accordionId}">`;
+
+        // Overview Accordion (open by default)
+        html += `
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#overview_${project.id}">
+                    📋 Project Overview
+                </button>
+            </h2>
+            <div id="overview_${project.id}" class="accordion-collapse collapse show" data-bs-parent="#${accordionId}">
+                <div class="accordion-body">
+                    <p>${project.overview.description}</p>
+                    <div class="overview-grid">
+                        <div class="overview-card"><strong>🚀 Why Choose</strong><ul class="mb-0 mt-2">${project.overview.whyChoose.map(item => `<li>${item}</li>`).join('')}</ul></div>
+                        <div class="overview-card"><strong>💻 Technology</strong><ul class="mb-0 mt-2">${project.overview.technology.map(t => `<li>${t}</li>`).join('')}</ul></div>
+                        <div class="overview-card"><strong>🏢 Supported Business</strong><p class="mb-0 mt-2">${project.overview.supportedBusiness.join(', ')}</p></div>
+                        <div class="overview-card"><strong>💰 ROI</strong><p class="mb-0 mt-2">${project.overview.roi}</p></div>
+                    </div>
+                    <div><strong>📈 Business Benefits:</strong><ul>${project.overview.businessBenefits.map(b => `<li>${b}</li>`).join('')}</ul></div>
+                    <div><strong>⏱️ Implementation Timeline:</strong> ${project.overview.implementationTimeline}</div>
+                    <div class="contact-mini-card">
+                        <i class="fas fa-address-book fa-2x" style="color:#4f46e5;"></i>
+                        <div>
+                            <strong>📞 Contact for Demo</strong><br>
+                            ✉️ ${project.overview.contact.email}<br>
+                            📱 ${project.overview.contact.phone}<br>
+                            📍 ${project.overview.contact.location || 'Dhanmondi, Dhaka'}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+       
+        // Module Accordions (with serial numbers)
+        project.modules.forEach((mod, index) => {
+            const moduleId = `mod_${project.id}_${index}`;
+            html += `
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${moduleId}">
+                        <span class="module-number">${index + 1}</span> ${mod.name}
+                    </button>
+                </h2>
+                <div id="${moduleId}" class="accordion-collapse collapse" data-bs-parent="#${accordionId}">
+                    <div class="accordion-body">
+                        <p>${mod.description || ''}</p>
+                        <h6>📌 Sub Modules & Key Tasks</h6>
+                        <ul class="list-submodule">
+                            ${mod.subModules.map(sub => `
+                                <li>
+                                    <span><i class="fas fa-check-circle text-success me-2"></i><strong>${sub.task}</strong></span>
+                                    <span class="badge-benefit">📈 ${sub.benefit}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        // Conclusion Accordion
+        html += `
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#conclusion_${project.id}">
+                    🎯 Conclusion & Next Steps
+                </button>
+            </h2>
+            <div id="conclusion_${project.id}" class="accordion-collapse collapse" data-bs-parent="#${accordionId}">
+                <div class="accordion-body">
+                    <p>${project.conclusion}</p>
+                    <a href="mailto:${project.overview.contact.email}" class="btn btn-primary rounded-pill"><i class="fas fa-envelope"></i> Request Demo</a>
+                </div>
+            </div>
+        </div>`;
+
+        html += `</div>`; // close accordion
+         //alert(html);
+        return html;
+    }
+
+    function buildSimpleModal(item, category) {
+        const accordionId = `accordion_${category}_${item.id}`;
+        let html = `<div class="accordion accordion-software" id="${accordionId}">`;
+
+        // Overview Accordion
+        html += `
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#overview_${item.id}">
+                    📋 Overview
+                </button>
+            </h2>
+            <div id="overview_${item.id}" class="accordion-collapse collapse show" data-bs-parent="#${accordionId}">
+                <div class="accordion-body">
+                    <p>${item.description}</p>
+                    ${item.benefits ? `<h6>✨ Key Benefits</h6><ul>${item.benefits.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+                    ${item.duration ? `<p><strong>⏳ Duration:</strong> ${item.duration}</p>` : ''}
+                </div>
+            </div>
+        </div>`;
+
+        // Contact Accordion
+        html += `
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contact_${item.id}">
+                    📞 Get in Touch
+                </button>
+            </h2>
+            <div id="contact_${item.id}" class="accordion-collapse collapse" data-bs-parent="#${accordionId}">
+                <div class="accordion-body">
+                    <div class="contact-mini-card">
+                        <i class="fas fa-address-book fa-2x" style="color:#4f46e5;"></i>
+                        <div>
+                            <strong>📧 Email:</strong> ${item.contact?.email || 'freelearning365.com@gmail.com'}<br>
+                            <strong>📱 Phone/WhatsApp:</strong> ${item.contact?.phone || '+880 1711-065316'}<br>
+                            <strong>📍 Location:</strong> Dhanmondi, Dhaka
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        html += `</div>`;
+        return html;
+    }
+
+     // ========== GLOBAL FUNCTION TO SHOW MODAL ==========
+    window.showDetailsModal = function(category, itemId) {
+        try {
+            let data, modalTitle, bodyHtml;
+           
+            if (category === 'software') {
+                data = softwareData.find(p => p.id === itemId);
+                if (!data) { console.error('Software not found:', itemId); return; }
+                modalTitle = data.title;
+                bodyHtml = buildSoftwareModal(data);
+            } else if (category === 'tools') {
+                data = businessToolsData.find(t => t.id === itemId);
+                if (!data) { console.error('Tool not found:', itemId); return; }
+                modalTitle = data.title;
+                bodyHtml = buildSimpleModal(data, 'tools');
+            } else if (category === 'services') {
+                data = servicesData.find(s => s.id === itemId);
+                if (!data) { console.error('Service not found:', itemId); return; }
+                modalTitle = data.title;
+                bodyHtml = buildSimpleModal(data, 'services');
+            } else if (category === 'training') {
+                data = trainingData.find(t => t.id === itemId);
+                if (!data) { console.error('Training not found:', itemId); return; }
+                modalTitle = data.title;
+                bodyHtml = buildSimpleModal(data, 'training');
+            } else {
+                console.error('Unknown category:', category);
+                return;
+            }
+             
+            const modalLabel = document.getElementById('detailsModalLabel');
+            const modalBody = document.getElementById('detailsModalBody');
+           
+            if (!modalLabel || !modalBody) {
+                console.error('Modal elements not found in DOM');
+                return;
+            }
+            modalLabel.innerHTML = modalTitle;
+            modalBody.innerHTML = bodyHtml;
+            const modalEl = document.getElementById('detailsModal');
+            const modal = new bootstrap.Modal(modalEl);
+            
+            modal.show();
+        } catch (error) {
+            console.error('Error in showDetailsModal:', error);
+        }
+    }; 
+ document.addEventListener('DOMContentLoaded', function() {
 
         // ===== Initialize AOS =====
         AOS.init({
@@ -1463,33 +2007,7 @@
                 if (homeLink) homeLink.classList.add('active');
             }
         });
-
-        // ===== Card click SweetAlert preview =====
-        document.querySelectorAll('.card-item').forEach(card => {
-            card.addEventListener('click', function(e) {
-                const title = this.querySelector('h4')?.textContent || 'Item';
-                const desc = this.querySelector('p')?.textContent ||
-                    'Detailed page coming soon!';
-                // Show a quick preview toast
-                Swal.fire({
-                    toast: true,
-                    position: 'bottom-end',
-                    icon: 'info',
-                    title: '🔗 Navigating to: ' + title,
-                    text: 'Loading detailed page...',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    background: '#1e293b',
-                    color: '#fff',
-                    customClass: {
-                        popup: 'swal2-toast-custom'
-                    }
-                });
-                // The link will navigate naturally since it's an <a> tag
-            });
-        });
-
+ 
         // ===== Handle Google Form Submission =====
         window.handleFormSubmit = function(event) {
             // Let the form submit to the hidden iframe
@@ -1561,7 +2079,12 @@
         console.log('%c✨ All systems loaded • Swiper • AOS • SweetAlert2 • Bootstrap 5.3 • Font Awesome 6',
             'color:#10b981;font-weight:500;');
     });
+    // (Optional) Re-initialize tooltips or other components if needed
+    document.addEventListener('shown.bs.modal', function () {
+        // Any post-show actions
+    });
 </script>
+ 
 
 <!-- JSON-LD Structured Data for SEO -->
 <script type="application/ld+json">
